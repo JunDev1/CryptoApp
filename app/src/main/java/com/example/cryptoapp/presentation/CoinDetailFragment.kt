@@ -1,25 +1,21 @@
 package com.example.cryptoapp.presentation
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.cryptoapp.R
-import com.example.cryptoapp.databinding.ActivityCoinDetailBinding
 import com.example.cryptoapp.databinding.FragmentCoinDetailBinding
 import com.squareup.picasso.Picasso
 
 class CoinDetailFragment : Fragment() {
 
     private lateinit var viewModel: CoinViewModel
+
     private var _binding: FragmentCoinDetailBinding? = null
-    private val binding : FragmentCoinDetailBinding get() =
-        _binding ?: throw RuntimeException("FragmentCoinDetailBinding is null")
+    private val binding: FragmentCoinDetailBinding
+        get() = _binding ?: throw RuntimeException("FragmentCoinDetailBinding is null")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +23,7 @@ class CoinDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCoinDetailBinding.inflate(inflater, container, false)
-         return binding.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,14 +55,9 @@ class CoinDetailFragment : Fragment() {
         fun newInstance(fromSymbol: String): Fragment {
             return CoinDetailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(EXTRA_FROM_SYMBOL, EMPTY_SYMBOL)
+                    putString(EXTRA_FROM_SYMBOL, fromSymbol)
                 }
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }
